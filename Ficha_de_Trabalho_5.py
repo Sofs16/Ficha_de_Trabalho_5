@@ -20,3 +20,24 @@ dados_ordenados_bubble = bubble_sort(dados)
 print("***Dados ordenados pelo Bubble Sort***")
 print("")
 print(dados_ordenados_bubble)
+
+
+""""Ordenar pelo Quick_Sort"""
+def quick_sort(dados):
+    if len(dados) <= 1:
+        return dados
+
+# Este trecho define a divisão dos dados em 3 partes: menor, igual ou superior ao pivot - valor do index central. 
+    pivot = dados['quantidade_vendida'].iloc[len(dados) // 2]
+    left = dados[dados['quantidade_vendida'] < pivot]
+    middle = dados[dados['quantidade_vendida'] == pivot]
+    right = dados[dados['quantidade_vendida'] > pivot]
+
+#Esta linha ordena as partes anteriormente definidas:  e usa o pd.concat para retornar um DataFrame final ordenado. O ignore_index=True faz com que se redifina os index do novo DataFrame.
+    return pd.concat([quick_sort(left), middle, quick_sort(right)], ignore_index=True)
+
+dados_ordenados_quick = quick_sort(dados)
+
+print("")
+print("***Dados ordenados pelo Quick Sort***")
+print(dados_ordenados_quick)
