@@ -41,3 +41,19 @@ dados_ordenados_quick = quick_sort(dados)
 print("")
 print("***Dados ordenados pelo Quick Sort***")
 print(dados_ordenados_quick)
+
+
+
+#3. Apresentar Resultados: 
+# Agrupar por produto e calcular a soma das vendas
+dados_soma_produto = dados.groupby('produto')['quantidade_vendida'].sum().reset_index()
+dados_ordenados_soma_produto = dados_soma_produto.sort_values('quantidade_vendida')
+
+# Criar o gráfico de barras
+plt.bar(dados_ordenados_soma_produto['produto'], dados_ordenados_soma_produto['quantidade_vendida'], color=['green'])
+plt.xlabel('Produto')
+plt.ylabel('Total de Vendas')
+plt.title('Total de Vendas por Produto')
+
+# Exibir o gráfico
+plt.show()
